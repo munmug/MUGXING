@@ -1,0 +1,340 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body, #root {
+  height: 100%;
+  overflow: hidden;
+}
+
+body {
+  background: #050605;
+  color: #F5F5F2;
+  font-family: 'Inter', 'Space Grotesk', system-ui, -apple-system, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+::-webkit-scrollbar {
+  width: 4px;
+  height: 4px;
+}
+::-webkit-scrollbar-track {
+  background: #050605;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(255,255,255,0.10);
+  border-radius: 2px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255,255,255,0.18);
+}
+
+/* Grid for studio canvas */
+.bg-grid {
+  background-image:
+    radial-gradient(circle, rgba(255,255,255,0.025) 0.5px, transparent 0.5px);
+  background-size: 48px 48px;
+}
+
+/* Dot pattern for home background — more visible now */
+.bg-dots-home {
+  background-image:
+    radial-gradient(circle, rgba(255,255,255,0.022) 0.5px, transparent 0.5px);
+  background-size: 34px 34px;
+  mask-image: radial-gradient(ellipse 64% 52% at 50% 45%, black 18%, transparent 100%);
+}
+
+/* ============================================
+   Star cross shape — before/after pseudo thin lines
+   ============================================ */
+.star-cross {
+  position: absolute;
+  border-radius: 0;
+  background: transparent !important;
+}
+.star-cross::before,
+.star-cross::after {
+  content: '';
+  position: absolute;
+  border-radius: 1px;
+}
+.star-cross::before {
+  width: 100%;
+  height: 1.2px;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+  background: inherit;
+}
+.star-cross::after {
+  width: 1.2px;
+  height: 100%;
+  left: 50%;
+  top: 0;
+  transform: translateX(-50%);
+  background: inherit;
+}
+
+/* ============================================
+   Layer 3: Per-variant star twinkling
+   ============================================ */
+@keyframes starTwinkleBright {
+  0%, 100% {
+    opacity: 0.42;
+    transform: scale(0.88);
+  }
+  28% {
+    opacity: 0.92;
+    transform: scale(1.38);
+  }
+  55% {
+    opacity: 0.55;
+    transform: scale(0.98);
+  }
+  78% {
+    opacity: 0.8;
+    transform: scale(1.22);
+  }
+}
+
+@keyframes starTwinkleMid {
+  0%, 100% {
+    opacity: 0.22;
+    transform: scale(0.82);
+  }
+  35% {
+    opacity: 0.68;
+    transform: scale(1.2);
+  }
+  65% {
+    opacity: 0.35;
+    transform: scale(0.92);
+  }
+}
+
+@keyframes starTwinkleDim {
+  0%, 100% {
+    opacity: 0.1;
+    transform: scale(0.78);
+  }
+  40% {
+    opacity: 0.38;
+    transform: scale(1.06);
+  }
+  72% {
+    opacity: 0.18;
+    transform: scale(0.88);
+  }
+}
+
+/* Legacy breath kept for glow layers */
+@keyframes starBreatheSubtle {
+  0%, 100% {
+    opacity: 0.18;
+    transform: scale(0.85);
+  }
+  40% {
+    opacity: 0.55;
+    transform: scale(1.15);
+  }
+  70% {
+    opacity: 0.3;
+    transform: scale(0.92);
+  }
+}
+
+/* ============================================
+   Central star axis — gentle pulse
+   ============================================ */
+@keyframes axisPulse {
+  0%, 100% {
+    opacity: 0.4;
+  }
+  45% {
+    opacity: 0.78;
+  }
+  70% {
+    opacity: 0.5;
+  }
+}
+
+/* ============================================
+   Orbital rings — ultra-slow rotation
+   ============================================ */
+@keyframes orbitalRotateSlow {
+  from { transform: translate(-50%, -50%) rotate(0deg); }
+  to   { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+@keyframes orbitalRotateReverse {
+  from { transform: translate(-50%, -50%) rotate(0deg); }
+  to   { transform: translate(-50%, -50%) rotate(-360deg); }
+}
+
+@keyframes orbitalRotateVerySlow {
+  from { transform: translate(-50%, -50%) rotate(0deg); }
+  to   { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+/* ============================================
+   Layer 4: Distant floating particles — slow drift
+   ============================================ */
+@keyframes floatDriftA {
+  0%, 100% { transform: translate(0, 0); }
+  25%      { transform: translate(8px, -12px); }
+  50%      { transform: translate(-5px, -18px); }
+  75%      { transform: translate(-10px, -8px); }
+}
+
+@keyframes floatDriftB {
+  0%, 100% { transform: translate(0, 0); }
+  25%      { transform: translate(-9px, 10px); }
+  50%      { transform: translate(6px, 16px); }
+  75%      { transform: translate(10px, 5px); }
+}
+
+@keyframes floatDriftC {
+  0%, 100% { transform: translate(0, 0); }
+  33%      { transform: translate(7px, -14px); }
+  66%      { transform: translate(-8px, -5px); }
+}
+
+/* ============================================
+   Layer 5: Meteor — two approach angles
+   ============================================ */
+@keyframes meteorShootA {
+  0% {
+    transform: translateX(0) translateY(0) rotate(-28deg);
+    opacity: 0;
+  }
+  6%  { opacity: 0.5; }
+  12% { opacity: 0.78; }
+  35% { opacity: 0.18; }
+  60% { opacity: 0; }
+  100% {
+    transform: translateX(-420px) translateY(70px) rotate(-28deg);
+    opacity: 0;
+  }
+}
+
+@keyframes meteorShootB {
+  0% {
+    transform: translateX(0) translateY(0) rotate(22deg);
+    opacity: 0;
+  }
+  6%  { opacity: 0.5; }
+  12% { opacity: 0.78; }
+  35% { opacity: 0.18; }
+  60% { opacity: 0; }
+  100% {
+    transform: translateX(380px) translateY(65px) rotate(22deg);
+    opacity: 0;
+  }
+}
+
+@keyframes meteorTrail {
+  0%   { opacity: 0.6; width: 100%; }
+  30%  { opacity: 0.28; width: 55%; }
+  100% { opacity: 0; width: 0%; }
+}
+
+/* ============================================
+   Layer 5: Distant scan / orbital glint
+   ============================================ */
+@keyframes scanSweep {
+  0% {
+    transform: translate(-50%, -50%) rotate(-8deg) scaleX(0);
+    opacity: 0;
+  }
+  15%  { opacity: 0.04; }
+  50%  {
+    transform: translate(-50%, -50%) rotate(-8deg) scaleX(1);
+    opacity: 0.03;
+  }
+  85%  { opacity: 0.01; }
+  100% {
+    transform: translate(-50%, -50%) rotate(-8deg) scaleX(0);
+    opacity: 0;
+  }
+}
+
+/* ============================================
+   Halo breath — for 3-layer glow
+   ============================================ */
+@keyframes haloBreath {
+  0%, 100% { opacity: 0.55; }
+  45%      { opacity: 0.9; }
+  72%      { opacity: 0.6; }
+}
+
+/* ============================================
+   Legacy animations (kept for compatibility)
+   ============================================ */
+
+@keyframes breathe {
+  0%, 100% {
+    box-shadow:
+      0 0 6px rgba(222,255,154,0.10),
+      0 0 20px rgba(222,255,154,0.03);
+  }
+  50% {
+    box-shadow:
+      0 0 16px rgba(222,255,154,0.24),
+      0 0 40px rgba(222,255,154,0.08);
+  }
+}
+
+@keyframes flow {
+  0% { stroke-dashoffset: 20; }
+  100% { stroke-dashoffset: 0; }
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+@keyframes pulse-soft {
+  0%, 100% { opacity: 0.55; }
+  50% { opacity: 1; }
+}
+
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.animate-breathe {
+  animation: breathe 4s ease-in-out infinite;
+}
+
+.flow-line {
+  stroke-dasharray: 6 4;
+  animation: flow 1s linear infinite;
+}
+
+.animate-shimmer {
+  background: linear-gradient(90deg, transparent, rgba(222,255,154,0.06), transparent);
+  background-size: 200% 100%;
+  animation: shimmer 2.5s infinite;
+}
+
+.animate-pulse-soft {
+  animation: pulse-soft 2.2s ease-in-out infinite;
+}
+
+.animate-marquee {
+  animation: marquee 32s linear infinite;
+}
+
+/* Marquee pause on hover */
+.animate-marquee:hover {
+  animation-play-state: paused;
+}

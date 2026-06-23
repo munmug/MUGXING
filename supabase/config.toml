@@ -1,0 +1,19 @@
+# Minimal Supabase config. The important part for us is the function
+# setting below — with the new sb_publishable_* keys, Edge Functions
+# can't verify them as JWTs, so we disable JWT verification for this
+# public market-data endpoint. The 30s in-function cache protects the
+# Twelve Data quota regardless of who calls it.
+
+project_id = "nqulfhqrarxaeipajgzk"
+
+[functions.market-pulse]
+verify_jwt = false
+
+[functions.stock-quote]
+verify_jwt = false
+
+[functions.llm]
+verify_jwt = false
+
+[functions.edgar]
+verify_jwt = false
