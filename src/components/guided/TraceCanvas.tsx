@@ -70,7 +70,7 @@ export default function TraceCanvas({ nodes, onNodeClick, activeNode, onNodeHove
                 {/* Header */}
                 <div className="flex items-center justify-between mb-1.5">
                   <span className={`text-[12px] font-medium ${isActive ? 'text-accent-600' : 'text-foreground-900'}`}>
-                    {node.label}
+                    {tr(node.label)}
                   </span>
                   <span className={`px-1.5 py-0.5 rounded text-[9px] font-mono ${pathColors[node.pathType] || 'bg-background-200 text-foreground-500'}`}>
                     {node.pathType}
@@ -97,7 +97,7 @@ export default function TraceCanvas({ nodes, onNodeClick, activeNode, onNodeHove
                     >
                       <div className="flex items-center gap-1 text-[10px] text-accent-600 font-mono mb-1.5">
                         <Link2 size={9} />
-                        支持段落
+                        {tr('支持段落')}
                       </div>
                       <div className="flex flex-wrap gap-1">
                         {node.relatedSections.map((sec) => (

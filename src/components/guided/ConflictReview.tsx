@@ -30,7 +30,7 @@ export default function ConflictReview({ context, onBack, onResolve }: ConflictR
             onClick={() => onResolve('both')}
             className="px-6 py-2.5 rounded-full bg-xing-green text-[#10120A] text-sm font-semibold hover:bg-xing-green-2 transition-all cursor-pointer whitespace-nowrap"
           >
-            继续生成报告
+            {tr('继续生成报告')}
           </button>
         </motion.div>
       </div>
@@ -52,7 +52,7 @@ export default function ConflictReview({ context, onBack, onResolve }: ConflictR
           </button>
           <div className="flex items-center gap-2">
             <AlertTriangle size={16} className="text-xing-red" />
-            <span className="text-sm font-semibold text-xing-red">{conflict.title}</span>
+            <span className="text-sm font-semibold text-xing-red">{tr(conflict.title)}</span>
           </div>
           {context?.subject.symbol && (
             <span className="text-[10px] text-xing-text-3 font-mono ml-auto">{context.subject.symbol}</span>
@@ -63,7 +63,7 @@ export default function ConflictReview({ context, onBack, onResolve }: ConflictR
         <div className="grid grid-cols-[1fr_80px_1fr] gap-4 mb-8">
           {/* Original */}
           <div className="p-5 rounded-xl bg-xing-card border border-xing-red/20">
-            <div className="text-xs text-xing-red/60 font-mono mb-3">{conflict.original.label}</div>
+            <div className="text-xs text-xing-red/60 font-mono mb-3">{tr(conflict.original.label)}</div>
             <div className="flex flex-col gap-3">
               <div>
                 <div className="text-[11px] text-xing-text-3">{tr('增长率')}</div>
@@ -99,7 +99,7 @@ export default function ConflictReview({ context, onBack, onResolve }: ConflictR
 
           {/* Adjusted */}
           <div className="p-5 rounded-xl bg-xing-card border border-xing-green/20">
-            <div className="text-xs text-xing-green/70 font-mono mb-3">{conflict.adjusted.label}</div>
+            <div className="text-xs text-xing-green/70 font-mono mb-3">{tr(conflict.adjusted.label)}</div>
             <div className="flex flex-col gap-3">
               <div>
                 <div className="text-[11px] text-xing-text-3">{tr('增长率')}</div>
@@ -130,7 +130,7 @@ export default function ConflictReview({ context, onBack, onResolve }: ConflictR
             <AlertTriangle size={14} className="text-xing-yellow mt-0.5 shrink-0" />
             <div>
               <div className="text-[12px] font-medium text-xing-yellow mb-1">{conflict.conflictType}</div>
-              <p className="text-[12px] text-xing-text-2/80 leading-relaxed">{conflict.suggestion}</p>
+              <p className="text-[12px] text-xing-text-2/80 leading-relaxed">{tr(conflict.suggestion)}</p>
             </div>
           </div>
         </div>
@@ -156,9 +156,9 @@ export default function ConflictReview({ context, onBack, onResolve }: ConflictR
                 </div>
                 <div>
                   <div className={`text-[13px] font-medium ${selected === opt.id ? 'text-xing-text' : 'text-xing-text-2'}`}>
-                    {opt.label}
+                    {tr(opt.label)}
                   </div>
-                  <div className="text-[11px] text-xing-text-3 mt-0.5">{opt.desc}</div>
+                  <div className="text-[11px] text-xing-text-3 mt-0.5">{tr(opt.desc)}</div>
                 </div>
                 {opt.id === 'both' && (
                   <span className="ml-auto text-[10px] text-xing-green/70 font-mono whitespace-nowrap">{tr('推荐')}</span>
@@ -175,7 +175,7 @@ export default function ConflictReview({ context, onBack, onResolve }: ConflictR
             className="flex items-center gap-2 px-8 py-2.5 rounded-full bg-xing-green text-[#10120A] text-sm font-semibold hover:bg-xing-green-2 transition-all cursor-pointer whitespace-nowrap active:scale-[0.97]"
           >
             <Check size={14} />
-            确认处理方式，生成报告
+            {tr('确认处理方式，生成报告')}
           </button>
         </div>
       </motion.div>

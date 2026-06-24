@@ -1,3 +1,4 @@
+import { tr } from '@/lib/lang';
 interface ProgressBarProps {
   progress: number;
   label?: string;
@@ -20,7 +21,7 @@ export default function ProgressBar({ progress, label, count, status = 'running'
       {(label || count) && (
         <div className="flex items-center justify-between">
           {label && <span className="text-[11px] text-xing-text-2 truncate">{label}</span>}
-          {count && <span className={`text-[10px] font-mono ${style.text}`}>{count}</span>}
+          {count && <span className={`text-[10px] font-mono ${tr(style.text)}`}>{count}</span>}
         </div>
       )}
       <div className="w-full h-1 bg-xing-card-hover/70 rounded-full overflow-hidden">

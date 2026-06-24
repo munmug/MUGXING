@@ -72,7 +72,7 @@ export default function QuickResult({ data, contextLabel, onBack, onDeepResearch
                 <span className="text-sm font-bold text-xing-green">{data.symbol.charAt(0)}</span>
               </div>
               <div>
-                <h2 className="text-xl font-semibold text-xing-text">{data.symbol} {data.name}</h2>
+                <h2 className="text-xl font-semibold text-xing-text">{data.symbol} {tr(data.name)}</h2>
                 <div className="flex items-center gap-3 mt-1">
                   <span className={`inline-flex items-center gap-1 px-2 py-0.5 rounded-md text-[11px] font-medium ${
                     data.riskScore > 65 ? 'bg-xing-red/10 text-xing-red border border-xing-red/20' :
@@ -108,9 +108,9 @@ export default function QuickResult({ data, contextLabel, onBack, onDeepResearch
                     >
                       <div className="flex items-center gap-2 mb-2">
                         <Icon size={14} className={impactColors[card.impact].text} />
-                        <span className="text-[13px] font-medium text-xing-text">{card.title}</span>
+                        <span className="text-[13px] font-medium text-xing-text">{tr(card.title)}</span>
                       </div>
-                      <p className="text-[12px] text-xing-text-2/70 leading-relaxed">{card.description}</p>
+                      <p className="text-[12px] text-xing-text-2/70 leading-relaxed">{tr(card.description)}</p>
                     </motion.div>
                   );
                 })}
@@ -125,8 +125,8 @@ export default function QuickResult({ data, contextLabel, onBack, onDeepResearch
                   <div key={i} className={`flex items-start gap-3 p-3 rounded-lg border ${severityColors[risk.severity].bg}`}>
                     <div className={`w-2 h-2 rounded-full mt-1.5 shrink-0 ${severityColors[risk.severity].dot}`} />
                     <div className="min-w-0">
-                      <div className="text-[13px] font-medium text-xing-text">{risk.title}</div>
-                      <div className="text-[12px] text-xing-text-2/60 mt-0.5">{risk.description}</div>
+                      <div className="text-[13px] font-medium text-xing-text">{tr(risk.title)}</div>
+                      <div className="text-[12px] text-xing-text-2/60 mt-0.5">{tr(risk.description)}</div>
                     </div>
                   </div>
                 ))}
@@ -159,7 +159,7 @@ export default function QuickResult({ data, contextLabel, onBack, onDeepResearch
                   transition={{ delay: 0.1 * i, duration: 0.3 }}
                   className="p-3 rounded-lg bg-xing-card border border-xing-border"
                 >
-                  <div className="text-[11px] text-xing-text-2/50 mb-1">{card.label}</div>
+                  <div className="text-[11px] text-xing-text-2/50 mb-1">{tr(card.label)}</div>
                   <div className="text-base font-semibold text-xing-text font-mono">{card.value}</div>
                   <div className="text-[10px] text-xing-text-3 mt-0.5">{card.subtext}</div>
                 </motion.div>
@@ -187,13 +187,13 @@ export default function QuickResult({ data, contextLabel, onBack, onDeepResearch
             onClick={onDeepResearch}
             className="px-6 py-2.5 rounded-full border border-xing-green/30 text-sm text-xing-green hover:bg-xing-green/5 transition-all cursor-pointer whitespace-nowrap"
           >
-            继续深入研究
+            {tr('继续深入研究')}
           </button>
           <button
             onClick={onOpenStudio}
             className="px-6 py-2.5 rounded-full bg-xing-green text-[#10120A] text-sm font-semibold hover:bg-xing-green-2 transition-all cursor-pointer whitespace-nowrap active:scale-[0.97]"
           >
-            加入研究工作台
+            {tr('加入研究工作台')}
           </button>
         </div>
       </motion.div>

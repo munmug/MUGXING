@@ -41,10 +41,10 @@ export default function ResearchNodeCard({ node, selected, onClick, onEdit }: Re
       {/* Header */}
       <div className="p-3 pb-2">
         <div className="flex items-center justify-between mb-1">
-          <span className="text-[12px] font-medium text-xing-text truncate">{node.label}</span>
+          <span className="text-[12px] font-medium text-xing-text truncate">{tr(node.label)}</span>
           <span className="text-[9px] text-xing-text-2/40 font-mono">{typeLabels[node.type]}</span>
         </div>
-        <p className="text-[10px] text-xing-text-3 leading-relaxed">{node.description}</p>
+        <p className="text-[10px] text-xing-text-3 leading-relaxed">{tr(node.description)}</p>
       </div>
 
       {/* Fields */}
@@ -54,7 +54,7 @@ export default function ResearchNodeCard({ node, selected, onClick, onEdit }: Re
             <span className="text-[10px] text-xing-text-disabled">{f.key}</span>
             <div className="flex items-center gap-1">
               <span className={`text-[10px] font-mono ${f.editable ? 'text-xing-green/80' : 'text-xing-text-2/70'}`}>
-                {f.value}
+                {tr(f.value)}
               </span>
               {f.editable && <Settings size={9} className="text-xing-green/40" />}
             </div>
@@ -76,7 +76,7 @@ export default function ResearchNodeCard({ node, selected, onClick, onEdit }: Re
             onClick={(e) => { e.stopPropagation(); onEdit(); }}
             className="px-2 py-1 rounded-md bg-xing-green/15 text-xing-green text-[10px] hover:bg-xing-green/20 transition-colors cursor-pointer whitespace-nowrap"
           >
-            编辑参数
+            {tr('编辑参数')}
           </motion.button>
         )}
       </div>

@@ -1,3 +1,4 @@
+import { tr } from '@/lib/lang';
 interface StatusBadgeProps {
   status: string;
   type?: 'success' | 'warning' | 'error' | 'info' | 'neutral';
@@ -15,7 +16,7 @@ export default function StatusBadge({ status, type = 'neutral' }: StatusBadgePro
   return (
     <span className={`inline-flex items-center gap-1.5 px-2 py-0.5 rounded-md text-[11px] font-medium border ${statusColors[type]}`}>
       <span className={`w-1.5 h-1.5 rounded-full ${type === 'success' ? 'bg-xing-green' : type === 'warning' ? 'bg-xing-yellow' : type === 'error' ? 'bg-xing-red' : 'bg-xing-text-2'}`} />
-      {status}
+      {tr(status)}
     </span>
   );
 }

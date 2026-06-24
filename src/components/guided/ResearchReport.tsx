@@ -135,10 +135,10 @@ export default function ResearchReport({
               className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-accent-500/25 text-accent-600 hover:text-accent-700 hover:bg-accent-500/5 text-[12px] transition-all cursor-pointer whitespace-nowrap"
             >
               <Layers size={13} />
-              进入 Research Studio
+              {tr('进入 Research Studio')}
             </button>
             <div className="absolute right-0 top-full mt-1.5 w-64 p-3 rounded-lg bg-foreground-950 text-background-50 text-[11px] leading-relaxed opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 pointer-events-none z-20">
-              将当前报告转为可编辑研究流，继续调整数据源、框架和分析逻辑。
+              {tr('将当前报告转为可编辑研究流，继续调整数据源、框架和分析逻辑。')}
             </div>
           </div>
         </div>
@@ -157,8 +157,8 @@ export default function ResearchReport({
             </div>
 
             {/* Title */}
-            <h2 className="text-2xl font-semibold text-foreground-950 mb-1.5">{report.title}</h2>
-            <p className="text-[13px] text-foreground-500 mb-5">{report.subtitle}</p>
+            <h2 className="text-2xl font-semibold text-foreground-950 mb-1.5">{tr(report.title)}</h2>
+            <p className="text-[13px] text-foreground-500 mb-5">{tr(report.subtitle)}</p>
 
             {/* Summary stats */}
             <div className="grid grid-cols-4 gap-4">
@@ -201,8 +201,8 @@ export default function ResearchReport({
             {hasConflict && report.resolutionCard && (
               <div className="mt-4 p-4 rounded-lg bg-accent-500/5 border border-accent-500/15">
                 <div className="text-[11px] text-accent-600 font-mono mb-1.5">{tr('处理方式')}</div>
-                <div className="text-[13px] font-medium text-foreground-900 mb-1">{report.resolutionCard.label}</div>
-                <div className="text-[12px] text-foreground-600 leading-relaxed">{report.resolutionCard.description}</div>
+                <div className="text-[13px] font-medium text-foreground-900 mb-1">{tr(report.resolutionCard.label)}</div>
+                <div className="text-[12px] text-foreground-600 leading-relaxed">{tr(report.resolutionCard.description)}</div>
               </div>
             )}
           </div>
@@ -257,7 +257,7 @@ export default function ResearchReport({
                   {/* Section header */}
                   <div className="flex items-center gap-2.5 mb-3">
                     {getSectionIcon(section.id)}
-                    <h3 className="text-[16px] font-semibold text-foreground-950">{section.title}</h3>
+                    <h3 className="text-[16px] font-semibold text-foreground-950">{tr(section.title)}</h3>
                     {sources.length > 0 && (
                       <button
                         onClick={() => setExpandedSection(isExpanded ? null : section.id)}
@@ -292,7 +292,7 @@ export default function ResearchReport({
                   </AnimatePresence>
 
                   {/* Content */}
-                  <p className="text-[14px] text-foreground-700 leading-[1.75]">{section.content}</p>
+                  <p className="text-[14px] text-foreground-700 leading-[1.75]">{tr(section.content)}</p>
 
                   {/* Source nodes at bottom */}
                   {sources.length > 0 && !isHighlighted && (
@@ -331,7 +331,7 @@ export default function ResearchReport({
                             return (
                               <div key={sid} className="p-3 rounded-lg bg-background-50 border border-background-200/50">
                                 <div className="flex items-center justify-between mb-1.5">
-                                  <span className="text-[12px] font-medium text-foreground-800">{node.label}</span>
+                                  <span className="text-[12px] font-medium text-foreground-800">{tr(node.label)}</span>
                                   <span className={`px-1.5 py-0.5 rounded text-[9px] font-mono ${
                                     node.pathType === 'cold-path' ? 'bg-accent-500/10 text-accent-600' :
                                     node.pathType === 'type-safe' ? 'bg-accent-500/15 text-accent-600' :
@@ -444,7 +444,7 @@ export default function ResearchReport({
                 >
                   <div className="p-5 rounded-xl bg-background-100 border border-accent-500/15">
                     <div className="text-[12px] font-medium text-foreground-800 mb-3">
-                      继续研究当前主题
+                      {tr('继续研究当前主题')}
                     </div>
                     <div className="flex items-start gap-3">
                       <input
@@ -461,13 +461,13 @@ export default function ResearchReport({
                         disabled={!followUpInput.trim()}
                         className="px-5 py-2.5 rounded-lg bg-accent-500 text-background-50 text-[13px] font-medium hover:bg-accent-600 transition-all cursor-pointer whitespace-nowrap disabled:opacity-40 disabled:cursor-not-allowed"
                       >
-                        开始补充分析
+                        {tr('开始补充分析')}
                       </button>
                       <button
                         onClick={() => { setShowFollowUp(false); setFollowUpInput(''); }}
                         className="px-4 py-2.5 rounded-lg border border-background-200/70 text-[13px] text-foreground-500 hover:text-foreground-800 transition-colors cursor-pointer whitespace-nowrap"
                       >
-                        取消
+                        {tr('取消')}
                       </button>
                     </div>
                   </div>

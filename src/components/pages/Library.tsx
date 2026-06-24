@@ -74,9 +74,9 @@ export default function Library({ onBack, onViewReport, onEditInStudio, onDelete
               key={item.id}
               className="grid grid-cols-[1fr_100px_120px_100px_100px_100px] gap-4 px-4 py-3 border-b border-xing-border-subtle hover:bg-xing-card/50 transition-colors items-center"
             >
-              <span className="text-[13px] text-xing-text truncate font-medium">{item.title}</span>
+              <span className="text-[13px] text-xing-text truncate font-medium">{tr(item.title)}</span>
               <span className="text-[12px] text-xing-text-2 font-mono">{item.symbol}</span>
-              <span className="text-[12px] text-xing-text-2/60">{item.type}</span>
+              <span className="text-[12px] text-xing-text-2/60">{tr(item.type)}</span>
               <span className="text-[11px] text-xing-text-disabled font-mono">{item.createdAt}</span>
               <span><StatusBadge status={item.status === 'completed' ? '已完成' : item.status === 'draft' ? '草稿' : item.status === 'running' ? '运行中' : '异常'} type={statusTypeMap[item.status]} /></span>
               <span className="flex items-center gap-2">

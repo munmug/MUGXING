@@ -35,7 +35,7 @@ export default function IntentRouting({ input, detectedIntent, recommendation, o
             <div className="text-[10px] text-xing-text-disabled mb-1.5">{tr('识别结果')}</div>
             <div className="flex items-center gap-3 p-3 rounded-lg bg-xing-green/5 border border-xing-green/20">
               <span className="w-2 h-2 rounded-full bg-xing-green animate-pulse" />
-              <span className="text-[13px] text-xing-text font-medium">{detectedIntent}</span>
+              <span className="text-[13px] text-xing-text font-medium">{tr(detectedIntent)}</span>
             </div>
           </div>
 
@@ -45,7 +45,7 @@ export default function IntentRouting({ input, detectedIntent, recommendation, o
             <div className="p-3 rounded-lg bg-xing-card border border-xing-border flex items-center justify-between">
               <div className="flex items-center gap-2">
                 <ExternalLink size={13} className="text-xing-green/70" />
-                <span className="text-[13px] text-xing-green font-medium">{recommendation}</span>
+                <span className="text-[13px] text-xing-green font-medium">{tr(recommendation)}</span>
               </div>
               <ChevronRight size={14} className="text-xing-text-3" />
             </div>
@@ -66,7 +66,7 @@ export default function IntentRouting({ input, detectedIntent, recommendation, o
             className="w-full flex items-center justify-center gap-1.5 py-2 text-[11px] text-xing-text-disabled hover:text-xing-text-2/60 transition-colors cursor-pointer"
           >
             <ChevronLeft size={12} />
-            返回星轴
+            {tr('返回星轴')}
           </button>
         </div>
       </motion.div>

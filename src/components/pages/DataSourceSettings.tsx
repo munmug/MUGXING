@@ -4,6 +4,7 @@ import { ChevronLeft, Save } from 'lucide-react';
 import StatusBadge from '@/components/common/StatusBadge';
 import SourceCard from '@/components/common/SourceCard';
 import { dataSourceSettings } from '@/data/mockSources';
+import { tr } from '@/lib/lang';
 
 interface DataSourceSettingsProps {
   onBack: () => void;
@@ -18,7 +19,7 @@ export default function DataSourceSettings({ onBack, showToast }: DataSourceSett
   };
 
   const handleSave = () => {
-    showToast('数据源设置已保存');
+    showToast(tr('数据源设置已保存'));
   };
 
   const statusTypeMap: Record<string, 'success' | 'error' | 'info'> = {
@@ -53,7 +54,7 @@ export default function DataSourceSettings({ onBack, showToast }: DataSourceSett
             <SourceCard
               key={src.id}
               id={src.id}
-              name={src.name}
+              name={tr(src.name)}
               domain={src.category}
               status="fetched"
               progress={100}
@@ -70,7 +71,7 @@ export default function DataSourceSettings({ onBack, showToast }: DataSourceSett
             className="flex items-center gap-2 px-6 py-2.5 rounded-full bg-xing-green text-[#10120A] text-sm font-semibold hover:bg-xing-green-2 transition-all cursor-pointer whitespace-nowrap active:scale-[0.97]"
           >
             <Save size={14} />
-            保存数据源设置
+            {tr('保存数据源设置')}
           </button>
         </div>
       </motion.div>

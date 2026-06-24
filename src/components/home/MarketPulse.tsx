@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { getMarketPulse } from '@/services/market';
 import { marketPulseData } from '@/data/mockMarket';
 import type { MarketPulseItem } from '@/lib/types';
+import { tr } from '@/lib/lang';
 
 const REFRESH_MS = 60_000;
 
@@ -47,7 +48,7 @@ export default function MarketPulse() {
         <div className="flex items-center gap-8 animate-marquee whitespace-nowrap group-hover:[animation-play-state:paused]">
           {doubled.map((item, i) => (
             <span key={i} className="inline-flex items-center gap-2.5 text-[11px] shrink-0">
-              <span className="text-xing-text-3 font-medium">{item.label}</span>
+              <span className="text-xing-text-3 font-medium">{tr(item.label)}</span>
               <span className="font-mono text-xing-text-2">{item.value}</span>
               <span className={`font-mono text-[10px] ${
                 item.status === 'up' ? 'text-xing-green' : item.status === 'down' ? 'text-xing-red/75' : 'text-xing-yellow/75'

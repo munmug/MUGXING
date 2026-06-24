@@ -1,4 +1,5 @@
 import StatusBadge from './StatusBadge';
+import { tr } from '@/lib/lang';
 
 interface SourceCardProps {
   id: string;
@@ -37,7 +38,7 @@ export default function SourceCard({ id, name, domain, status, progress, count, 
               <span className={`absolute top-0.5 w-4 h-4 rounded-full bg-white transition-transform ${enabled ? 'left-[14px]' : 'left-[2px]'}`} />
             </button>
           )}
-          <StatusBadge status={statusInfo.label} type={statusInfo.type} />
+          <StatusBadge status={tr(statusInfo.label)} type={statusInfo.type} />
         </div>
       </div>
       <div className="w-full h-1 bg-xing-card-hover/70 rounded-full overflow-hidden">

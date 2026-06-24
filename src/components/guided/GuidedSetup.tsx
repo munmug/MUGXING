@@ -97,7 +97,7 @@ export default function GuidedSetup({ context, onBack, onSave, onRun }: GuidedSe
               <div className="p-3 rounded-lg bg-xing-card border border-xing-border mb-3">
                 <div className="text-[11px] text-xing-text-3 mb-1">{tr('研究对象')}</div>
                 <div className="text-[13px] text-xing-text font-medium">
-                  {subject.name}
+                  {tr(subject.name)}
                   {subject.symbol && <span className="text-xing-text-3 text-[11px] ml-1 font-mono">{subject.symbol}</span>}
                 </div>
                 {subject.aliases && subject.aliases.length > 0 && (
@@ -140,11 +140,11 @@ export default function GuidedSetup({ context, onBack, onSave, onRun }: GuidedSe
                   >
                     <div className="flex items-center justify-between">
                       <span className={`text-[13px] font-medium ${frameworks.includes(fw.id) ? 'text-xing-text' : 'text-xing-text-2'}`}>
-                        {fw.label}
+                        {tr(fw.label)}
                       </span>
                       {frameworks.includes(fw.id) && <i className="ri-check-line text-xing-green text-sm" />}
                     </div>
-                    <div className="text-[11px] text-xing-text-3 mt-0.5">{fw.desc}</div>
+                    <div className="text-[11px] text-xing-text-3 mt-0.5">{tr(fw.desc)}</div>
                   </button>
                 ))}
               </div>
@@ -170,7 +170,7 @@ export default function GuidedSetup({ context, onBack, onSave, onRun }: GuidedSe
                   >
                     <i className={`${src.icon} text-sm ${sources.includes(src.id) ? 'text-xing-green' : 'text-xing-text-3'}`} />
                     <span className={`text-[12px] ${sources.includes(src.id) ? 'text-xing-text' : 'text-xing-text-2'} whitespace-nowrap`}>
-                      {src.label}
+                      {tr(src.label)}
                     </span>
                     {sources.includes(src.id) && <i className="ri-check-line text-xing-green text-xs ml-auto" />}
                   </button>
@@ -237,14 +237,14 @@ export default function GuidedSetup({ context, onBack, onSave, onRun }: GuidedSe
             className="flex items-center gap-2 px-6 py-2.5 rounded-full border border-xing-border-hover text-sm text-xing-text-2 hover:text-xing-text hover:border-xing-border-hover transition-all cursor-pointer whitespace-nowrap"
           >
             <Save size={14} />
-            保存研究计划
+            {tr('保存研究计划')}
           </button>
           <button
             onClick={() => onRun(frameworks, sources)}
             className="flex items-center gap-2 px-8 py-2.5 rounded-full bg-xing-green text-[#10120A] text-sm font-semibold hover:bg-xing-green-2 transition-all cursor-pointer whitespace-nowrap active:scale-[0.97]"
           >
             <Play size={14} />
-            开始执行分析
+            {tr('开始执行分析')}
           </button>
         </div>
       </motion.div>

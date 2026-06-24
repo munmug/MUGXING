@@ -27,7 +27,7 @@ export default function NodeParameterPanel({ node, onClose, onSave }: NodeParame
           <div className="flex items-center justify-between mb-5">
             <div>
               <div className="text-[10px] text-xing-text-disabled font-mono mb-1">{tr('节点参数')}</div>
-              <div className="text-sm font-semibold text-xing-text">{node.label}</div>
+              <div className="text-sm font-semibold text-xing-text">{tr(node.label)}</div>
             </div>
             <button onClick={onClose} className="w-7 h-7 flex items-center justify-center rounded-md text-xing-text-disabled hover:text-xing-text-2 hover:bg-xing-card transition-colors cursor-pointer">
               <X size={14} />
@@ -37,7 +37,7 @@ export default function NodeParameterPanel({ node, onClose, onSave }: NodeParame
           {/* Description */}
           <div className="p-3 rounded-lg bg-xing-card border border-xing-border mb-5">
             <div className="text-[10px] text-xing-text-disabled mb-1">{tr('描述')}</div>
-            <div className="text-[12px] text-xing-text-2/70">{node.description}</div>
+            <div className="text-[12px] text-xing-text-2/70">{tr(node.description)}</div>
           </div>
 
           {/* Fields */}
@@ -53,7 +53,7 @@ export default function NodeParameterPanel({ node, onClose, onSave }: NodeParame
                   />
                 ) : (
                   <div className="px-3 py-2 rounded-lg bg-xing-card/50 border border-xing-border-subtle text-[13px] text-xing-text-2 font-mono">
-                    {f.value}
+                    {tr(f.value)}
                   </div>
                 )}
               </div>
@@ -82,7 +82,7 @@ export default function NodeParameterPanel({ node, onClose, onSave }: NodeParame
             className="w-full flex items-center justify-center gap-2 px-4 py-2.5 rounded-lg bg-xing-green text-[#10120A] text-[13px] font-semibold hover:bg-xing-green-2 transition-all cursor-pointer active:scale-[0.97]"
           >
             <Save size={14} />
-            保存参数
+            {tr('保存参数')}
           </button>
         </div>
       </motion.div>

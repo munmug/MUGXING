@@ -548,7 +548,7 @@ export default function StarAxisHome({
               }`}>
               {isRecommended && (
                 <span className="absolute -top-2 right-3 px-2 py-0.5 rounded-full bg-xing-green/15 border border-xing-green/30 text-[9px] text-xing-green font-mono">
-                  推荐
+                  {tr('推荐')}
                 </span>
               )}
               <div className="flex items-center gap-2 mb-1.5">

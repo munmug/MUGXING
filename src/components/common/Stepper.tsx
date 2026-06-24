@@ -29,7 +29,7 @@ export default function Stepper({ steps }: StepperProps) {
               step.status === 'active' ? 'text-xing-text font-medium' : step.status === 'completed' ? 'text-xing-text-2' : 'text-xing-text-3'
             }`}
           >
-            {step.label}
+            {tr(step.label)}
             {step.status === 'active' && <span className="ml-1.5 text-[10px] text-xing-green/70 font-mono">{tr('执行中')}</span>}
             {step.status === 'completed' && <span className="ml-1.5 text-[10px] text-xing-green/50 font-mono">{tr('已完成')}</span>}
           </span>

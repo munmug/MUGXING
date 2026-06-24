@@ -401,7 +401,7 @@ export default function ResearchRunning({ context, onBack, onComplete, onAbort }
               {skeletonItems.map((item, i) => (
                 <ProgressBar
                   key={i}
-                  label={item.label}
+                  label={tr(item.label)}
                   progress={item.total > 0 ? (item.done / item.total) * 100 : 0}
                   count={`${item.done}/${item.total}`}
                   status={item.done >= item.total ? 'done' : item.done > 0 ? 'running' : 'pending'}
@@ -418,7 +418,7 @@ export default function ResearchRunning({ context, onBack, onComplete, onAbort }
             className="flex items-center gap-2 px-5 py-2 rounded-full border border-red-200 text-xs text-red-500/70 hover:text-red-600 hover:border-red-300/60 transition-all cursor-pointer whitespace-nowrap"
           >
             <XCircle size={14} />
-            中止研究
+            {tr('中止研究')}
           </button>
         </div>
       </motion.div>
@@ -442,7 +442,7 @@ export default function ResearchRunning({ context, onBack, onComplete, onAbort }
             >
               <Loader2 size={28} className="text-accent-500 animate-spin" />
               <span className="text-sm text-foreground-700 font-mono">
-                分析完成，正在生成研究报告...
+                {tr('分析完成，正在生成研究报告...')}
               </span>
             </motion.div>
           </motion.div>
@@ -468,20 +468,20 @@ export default function ResearchRunning({ context, onBack, onComplete, onAbort }
             >
               <h3 className="text-sm font-medium text-foreground-950 mb-2">{tr('确认中止研究？')}</h3>
               <p className="text-xs text-foreground-600 mb-6 leading-relaxed">
-                当前研究任务尚未完成，中止后将返回研究配置页。
+                {tr('当前研究任务尚未完成，中止后将返回研究配置页。')}
               </p>
               <div className="flex items-center justify-end gap-3">
                 <button
                   onClick={handleCancelAbort}
                   className="px-4 py-2 rounded-md text-xs text-foreground-700 bg-background-100 hover:bg-background-200/70 transition-colors cursor-pointer whitespace-nowrap"
                 >
-                  继续研究
+                  {tr('继续研究')}
                 </button>
                 <button
                   onClick={handleConfirmAbort}
                   className="px-4 py-2 rounded-md text-xs text-white bg-red-500 hover:bg-red-600 transition-colors cursor-pointer whitespace-nowrap"
                 >
-                  确认中止
+                  {tr('确认中止')}
                 </button>
               </div>
             </motion.div>

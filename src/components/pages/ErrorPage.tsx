@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
 import { ChevronLeft, AlertCircle, RefreshCw, ArrowLeft } from 'lucide-react';
+import { tr } from '@/lib/lang';
 
 interface ErrorPageProps {
   type: 'source' | 'analysis';
@@ -37,7 +38,7 @@ export default function ErrorPage({ type, onBack, onRetry, onReturnToSetup }: Er
               className="flex items-center gap-2 px-5 py-2.5 rounded-full bg-xing-green text-[#10120A] text-sm font-semibold hover:bg-xing-green-2 transition-all cursor-pointer whitespace-nowrap active:scale-[0.97]"
             >
               <RefreshCw size={14} />
-              重试
+              {tr('重试')}
             </button>
           )}
           {onReturnToSetup && (
@@ -46,7 +47,7 @@ export default function ErrorPage({ type, onBack, onRetry, onReturnToSetup }: Er
               className="flex items-center gap-2 px-5 py-2.5 rounded-full border border-xing-border-hover text-sm text-xing-text-2 hover:text-xing-text transition-all cursor-pointer whitespace-nowrap"
             >
               <ArrowLeft size={14} />
-              返回编辑研究计划
+              {tr('返回编辑研究计划')}
             </button>
           )}
           {!onRetry && !onReturnToSetup && (
@@ -55,7 +56,7 @@ export default function ErrorPage({ type, onBack, onRetry, onReturnToSetup }: Er
               className="flex items-center gap-2 px-5 py-2.5 rounded-full border border-xing-border-hover text-sm text-xing-text-2 hover:text-xing-text transition-all cursor-pointer whitespace-nowrap"
             >
               <ChevronLeft size={14} />
-              返回星轴
+              {tr('返回星轴')}
             </button>
           )}
         </div>

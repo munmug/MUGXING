@@ -61,7 +61,7 @@ export default function QuickSetup({ symbol, name, researchQuestion, onBack, onG
               className="mt-2 flex items-center gap-1.5 text-[11px] text-xing-text-disabled hover:text-xing-text-2/70 transition-colors cursor-pointer"
             >
               <RefreshCw size={10} />
-              更换标的
+              {tr('更换标的')}
             </button>
           </div>
 
@@ -87,9 +87,9 @@ export default function QuickSetup({ symbol, name, researchQuestion, onBack, onG
                   </div>
                   <div>
                     <div className={`text-sm font-medium ${selected === opt.id ? 'text-xing-text' : 'text-xing-text-2'}`}>
-                      {opt.label}
+                      {tr(opt.label)}
                     </div>
-                    <div className="text-[11px] text-xing-text-3 mt-0.5">{opt.desc}</div>
+                    <div className="text-[11px] text-xing-text-3 mt-0.5">{tr(opt.desc)}</div>
                   </div>
                   {selected === opt.id && (
                     <div className="ml-auto w-5 h-5 rounded-full border-2 border-xing-green flex items-center justify-center">
@@ -131,7 +131,7 @@ export default function QuickSetup({ symbol, name, researchQuestion, onBack, onG
             onClick={() => onGenerate(selected)}
             className="px-8 py-3 rounded-full bg-xing-green text-[#10120A] text-sm font-semibold hover:bg-xing-green-2 transition-all cursor-pointer active:scale-[0.97]"
           >
-            生成快速结论
+            {tr('生成快速结论')}
           </button>
         </div>
       </motion.div>

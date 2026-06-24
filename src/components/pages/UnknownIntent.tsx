@@ -75,7 +75,7 @@ export default function UnknownIntent({ input, onBack, onQuickAnalysis, onGuided
           className="flex items-center gap-1.5 mx-auto text-xs text-xing-text-disabled hover:text-xing-text-2/70 transition-colors cursor-pointer"
         >
           <ChevronLeft size={14} />
-          返回星轴重新输入
+          {tr('返回星轴重新输入')}
         </button>
       </motion.div>
     </div>

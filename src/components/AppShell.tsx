@@ -1,4 +1,5 @@
 import { useState, useCallback, useEffect } from 'react';
+import { useLang, tr } from '@/lib/lang';
 import { AnimatePresence, motion } from 'framer-motion';
 
 // Home components
@@ -51,6 +52,7 @@ import type {
 } from '@/lib/types';
 
 export default function AppShell() {
+  const lang = useLang();
   // ─── Core State ──────────────────────────────────────────
   const [view, setView] = useState<AppView>('home');
   const [userInput, setUserInput] = useState('');
@@ -164,7 +166,7 @@ export default function AppShell() {
               ? 'Semiconductor Research Flow'
               : ctx.subject.name.includes('腾讯')
                 ? 'Tencent Cloud Growth Study'
-                : `${ctx.subject.name} Research Study`;
+                : `${tr(ctx.subject.name)} Research Study`;
             setStudioNodes(defaultStudioNodes.map((n) =>
               n.id === 'research-target'
                 ? { ...n, fields: n.fields.map((f) => f.key === '研究问题' ? { ...f, value: question } : f) }
@@ -262,7 +264,7 @@ export default function AppShell() {
 
   // ─── Guided Research ─────────────────────────────────────
   const handleGuidedSave = useCallback((_frameworks: AnalysisFramework[], _sources: DataSourceType[]) => {
-    showToast('研究计划已保存');
+    showToast(tr('研究计划已保存'));
   }, [showToast]);
 
   const handleGuidedRun = useCallback((frameworks: AnalysisFramework[], sources: DataSourceType[]) => {
@@ -361,7 +363,7 @@ export default function AppShell() {
   }, [researchContext]);
 
   const handleExportReport = useCallback(() => {
-    showToast('报告已导出 Demo');
+    showToast(tr('报告已导出 Demo'));
   }, [showToast]);
 
   const handleSaveToLibrary = useCallback(() => {
@@ -378,7 +380,7 @@ export default function AppShell() {
       status: 'completed' as const,
     };
     setLibraryItems((prev) => [newItem, ...prev]);
-    showToast('报告已保存到资料库');
+    showToast(tr('报告已保存到资料库'));
     // Persist to Supabase (no-op if not configured); reconcile on success.
     saveLibraryItem(newItem).then((saved) => {
       if (saved) {
@@ -482,23 +484,23 @@ export default function AppShell() {
   // ─── Library ─────────────────────────────────────────────
   const handleLibraryView = useCallback((_id: string) => {
     setView('research-report');
-    showToast('查看报告 Demo');
+    showToast(tr('查看报告 Demo'));
   }, [showToast]);
 
   const handleLibraryDelete = useCallback((id: string) => {
     setLibraryItems((prev) => prev.filter((it) => it.id !== id));
-    showToast('已删除');
+    showToast(tr('已删除'));
     deleteLibraryItem(id); // persist (no-op if not configured)
   }, [showToast]);
 
   const handleLibraryEdit = useCallback((_id: string) => {
     setView('studio');
-    showToast('已在 Studio 中打开');
+    showToast(tr('已在 Studio 中打开'));
   }, [showToast]);
 
   // ─── Settings ────────────────────────────────────────────
   const handleSettingsSave = useCallback(() => {
-    showToast('数据源设置已保存');
+    showToast(tr('数据源设置已保存'));
   }, [showToast]);
 
   // ─── Error ───────────────────────────────────────────────
@@ -518,7 +520,7 @@ export default function AppShell() {
   const traceNodes: TraceNodeWithSections[] = researchContext?.traceNodes || [];
 
   return (
-    <div className="h-full flex flex-col bg-xing-bg text-xing-text overflow-hidden">
+    <div className="h-full flex flex-col bg-xing-bg text-xing-text overflow-hidden" data-lang={lang}>
       <LanguageToggle />
       <div className="flex-1 flex min-h-0" style={{ paddingBottom: showMarketPulse ? '42px' : '0' }}>
         <AnimatePresence mode="wait">
@@ -560,7 +562,7 @@ export default function AppShell() {
                 researchQuestion={researchContext?.researchQuestion || ''}
                 onBack={goHome}
                 onGenerate={handleQuickGenerate}
-                onChangeSymbol={() => showToast('更换标的 Demo')}
+                onChangeSymbol={() => showToast(tr('更换标的 Demo'))}
               />
             </motion.div>
           )}

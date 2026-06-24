@@ -62,7 +62,7 @@ export default function StudioRunResultView({ data, contextLabel, onBack, onView
             <div className="flex flex-col gap-2">
               {data.keyVariables.map((v, i) => (
                 <div key={i} className="flex items-center justify-between p-3 rounded-lg bg-xing-card border border-xing-border">
-                  <span className="text-[12px] text-xing-text-2">{v.name}</span>
+                  <span className="text-[12px] text-xing-text-2">{tr(v.name)}</span>
                   <span className={`text-[13px] font-mono font-semibold ${v.value > 0 ? 'text-xing-green' : 'text-xing-red'}`}>
                     {v.value > 0 ? '+' : ''}{v.value.toFixed(2)}
                   </span>
@@ -130,20 +130,20 @@ export default function StudioRunResultView({ data, contextLabel, onBack, onView
             className="flex items-center gap-2 px-5 py-2.5 rounded-full border border-xing-border-hover text-sm text-xing-text-2 hover:text-xing-text hover:border-xing-border-hover transition-all cursor-pointer whitespace-nowrap"
           >
             <FileText size={14} />
-            查看完整报告
+            {tr('查看完整报告')}
           </button>
           <button
             onClick={onContinueEdit}
             className="flex items-center gap-2 px-5 py-2.5 rounded-full border border-xing-green/30 text-sm text-xing-green hover:bg-xing-green/5 transition-all cursor-pointer whitespace-nowrap"
           >
             <Layers size={14} />
-            继续编辑研究流
+            {tr('继续编辑研究流')}
           </button>
           <button
             onClick={onNewTask}
             className="flex items-center gap-2 px-5 py-2.5 rounded-full bg-xing-green text-[#10120A] text-sm font-semibold hover:bg-xing-green-2 transition-all cursor-pointer whitespace-nowrap active:scale-[0.97]"
           >
-            新建研究任务
+            {tr('新建研究任务')}
           </button>
         </div>
       </motion.div>

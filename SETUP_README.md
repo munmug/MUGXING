@@ -116,3 +116,14 @@ Now includes `.gitignore` and `vercel.json` (sets output dir `out` + SPA rewrite
 
 ## Phase status
 1–4 ✅ · 1.5 ✅ · Dual language (UI mostly) ✅ · 5 Studio ✅
+
+## Bilingual mop-up (this build)
+- Dictionary expanded to ~616 entries (labels, sources, statuses, node text,
+  report sections, and the long demo paragraphs).
+- Render sites now wrapped with tr(): data fields (label/title/name/desc/text/
+  content), StatusBadge text, node field values, library type, intent-routing
+  labels, toasts, and standalone JSX text lines.
+- EN coverage is now high across the app. A small tail remains in Chinese:
+  dynamic template-literal strings (e.g. auto-generated flow messages with an
+  embedded ${question}) and logic keys — these are intentionally left as the
+  canonical values. The LLM-generated report/copilot content is English in EN.

@@ -52,7 +52,7 @@ export default function StudioCanvas({
 
   const handleSaveParams = useCallback((nodeId: string, fields: { key: string; value: string }[]) => {
     setNodes((prev) => prev.map((n) => (n.id === nodeId ? { ...n, fields, edited: true } : n)));
-    showToast('节点参数已保存');
+    showToast(tr('节点参数已保存'));
   }, [showToast]);
 
   const handleCopilotSubmit = useCallback(async () => {
@@ -76,13 +76,13 @@ export default function StudioCanvas({
           return n;
         }));
         setCopilotMessages((prev) => [...prev, { role: 'action', text: `已将冲突审查阈值更新为 ${match[1]}%` }]);
-        showToast('阈值已更新');
+        showToast(tr('阈值已更新'));
         return;
       }
     }
 
     // Real LLM copilot reply, grounded in the current research flow.
-    const nodeSummary = nodes.map((n) => `- ${n.label}${n.description ? ': ' + n.description : ''}`).join('\n');
+    const nodeSummary = nodes.map((n) => `- ${tr(n.label)}${n.description ? ': ' + n.description : ''}`).join('\n');
     const system =
       '你是星(Xing) Research Studio 的 AI 协作助手。用户正在搭建一个研究流(节点图)。请简洁、专业地回答用户关于研究流的问题，或给出可执行的操作建议。' +
       `\n\n当前研究流: ${strategyName}\n研究对象: ${context?.subject?.name ?? '未指定'} ${context?.subject?.symbol ?? ''}\n节点:\n${nodeSummary}` +
@@ -123,7 +123,7 @@ export default function StudioCanvas({
               className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-xing-border text-xing-text-2/60 hover:text-xing-text-2 text-[12px] transition-all cursor-pointer whitespace-nowrap"
             >
               <ArrowLeft size={13} />
-              返回报告
+              {tr('返回报告')}
             </button>
           )}
           <button
@@ -131,7 +131,7 @@ export default function StudioCanvas({
             className="flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-xing-green text-[#10120A] text-[12px] font-semibold hover:bg-xing-green-2 transition-all cursor-pointer whitespace-nowrap active:scale-[0.97]"
           >
             <Play size={13} />
-            运行分析
+            {tr('运行分析')}
           </button>
         </div>
       </div>
@@ -238,12 +238,12 @@ export default function StudioCanvas({
                   }`}>
                     {msg.role === 'assistant' && (
                       <div className="p-2.5 rounded-lg bg-xing-card border-l-2 border-xing-green/40">
-                        <div className="text-[11px] text-xing-text-2/80 leading-relaxed">{msg.text}</div>
+                        <div className="text-[11px] text-xing-text-2/80 leading-relaxed">{tr(msg.text)}</div>
                       </div>
                     )}
                     {msg.role === 'user' && (
                       <div className="px-3 py-2 rounded-full bg-xing-green/10 border border-xing-green/20">
-                        <div className="text-[11px] text-xing-text">{msg.text}</div>
+                        <div className="text-[11px] text-xing-text">{tr(msg.text)}</div>
                       </div>
                     )}
                     {msg.role === 'action' && (
@@ -251,7 +251,7 @@ export default function StudioCanvas({
                         <div className="flex items-center gap-1.5 mb-0.5">
                           <span className="text-[10px] text-xing-green/60 font-mono">Action Log</span>
                         </div>
-                        <div className="text-[11px] text-xing-text-2/70">{msg.text}</div>
+                        <div className="text-[11px] text-xing-text-2/70">{tr(msg.text)}</div>
                       </div>
                     )}
                   </div>
