@@ -6,6 +6,8 @@ import NodeParameterPanel from './NodeParameterPanel';
 import type { ResearchNode, ResearchConnection, CopilotMessage, ResearchContext } from '@/lib/types';
 import { defaultStudioNodes, defaultStudioConnections, defaultCopilotMessages } from '@/data/mockStudio';
 import { tr } from '@/lib/lang';
+import { callLLM } from '@/services/llm';
+import { langInstruction } from '@/lib/lang';
 
 interface StudioCanvasProps {
   strategyName: string;
@@ -53,12 +55,13 @@ export default function StudioCanvas({
     showToast('节点参数已保存');
   }, [showToast]);
 
-  const handleCopilotSubmit = useCallback(() => {
+  const handleCopilotSubmit = useCallback(async () => {
     if (!copilotInput.trim()) return;
     const input = copilotInput.trim();
+    setCopilotInput('');
     setCopilotMessages((prev) => [...prev, { role: 'user', text: input }]);
 
-    // Simple NLP simulation
+    // Shortcut: threshold update on the conflict-review node (real mutation)
     if (input.includes('阈值') && selectedNodeId === 'conflict-review') {
       const match = input.match(/(\d+)%/);
       if (match) {
@@ -74,13 +77,29 @@ export default function StudioCanvas({
         }));
         setCopilotMessages((prev) => [...prev, { role: 'action', text: `已将冲突审查阈值更新为 ${match[1]}%` }]);
         showToast('阈值已更新');
+        return;
       }
-    } else {
-      setCopilotMessages((prev) => [...prev, { role: 'action', text: '已接收指令，正在分析...当前研究流结构稳定，可手动编辑节点参数。' }]);
     }
 
-    setCopilotInput('');
-  }, [copilotInput, selectedNodeId, showToast]);
+    // Real LLM copilot reply, grounded in the current research flow.
+    const nodeSummary = nodes.map((n) => `- ${n.label}${n.description ? ': ' + n.description : ''}`).join('\n');
+    const system =
+      '你是星(Xing) Research Studio 的 AI 协作助手。用户正在搭建一个研究流(节点图)。请简洁、专业地回答用户关于研究流的问题，或给出可执行的操作建议。' +
+      `\n\n当前研究流: ${strategyName}\n研究对象: ${context?.subject?.name ?? '未指定'} ${context?.subject?.symbol ?? ''}\n节点:\n${nodeSummary}` +
+      langInstruction();
+    const history = copilotMessages
+      .filter((m) => m.role === 'user' || m.role === 'assistant')
+      .slice(-6)
+      .map((m) => ({ role: (m.role === 'user' ? 'user' : 'assistant') as 'user' | 'assistant', content: m.text }));
+
+    const reply = await callLLM([...history, { role: 'user', content: input }], { system, temperature: 0.4 });
+    setCopilotMessages((prev) => [
+      ...prev,
+      reply
+        ? { role: 'assistant', text: reply }
+        : { role: 'action', text: '已接收指令，正在分析...当前研究流结构稳定，可手动编辑节点参数。' },
+    ]);
+  }, [copilotInput, selectedNodeId, nodes, strategyName, context, copilotMessages, showToast]);
 
   return (
     <div className="flex-1 flex flex-col min-h-0">

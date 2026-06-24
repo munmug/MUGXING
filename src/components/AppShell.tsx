@@ -448,9 +448,24 @@ export default function AppShell() {
   }, [researchContext]);
 
   // ─── Studio ──────────────────────────────────────────────
-  const handleStudioRun = useCallback(() => {
+  const handleStudioRun = useCallback(async () => {
+    const ctx = researchContext;
+    // Run the flow → a real report from the subject's SEC data (US symbols),
+    // reusing the Phase 4 pipeline. Falls back to the mock run result.
+    if (ctx) {
+      try {
+        const live = await generateLiveReport(ctx);
+        if (live) {
+          setResearchContext({ ...ctx, generatedReport: live.report, traceNodes: live.traceNodes });
+          setView('research-report');
+          return;
+        }
+      } catch {
+        // fall through to mock result
+      }
+    }
     setView('studio-run-result');
-  }, []);
+  }, [researchContext]);
 
   const handleStudioContinue = useCallback(() => {
     setView('studio');

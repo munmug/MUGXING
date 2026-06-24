@@ -97,3 +97,22 @@ In the running app:
   strings (toasts, computed status labels) — a small mop-up pass, not yet done.
 - This zip ships the FULL src/ and supabase/ trees for consistency — drop the
   folders into your project root (overwrites changed files).
+
+## Phase 5 — Research Studio (this build)
+- Copilot is now a REAL LLM chat grounded in the current flow (strategy, nodes,
+  subject) — `StudioCanvas.tsx` calls the `llm` function; keeps the threshold
+  shortcut and falls back to a canned reply on failure.
+- "Run Analysis" now reuses the Phase 4 pipeline: for a US-symbol flow it
+  generates a real SEC+LLM report and opens it; otherwise falls back to the
+  mock run result.
+- No new function/secret. Uses the existing `llm` + `edgar` functions.
+
+## Deploy to GitHub + Vercel
+Now includes `.gitignore` and `vercel.json` (sets output dir `out` + SPA rewrites).
+1. GitHub: `git init && git add . && git commit -m "xing live data"` then create
+   a repo on github.com and `git remote add origin <url> && git push -u origin main`.
+2. Vercel: import the repo (auto-detects Vite), add env vars `VITE_SUPABASE_URL`
+   and `VITE_SUPABASE_PUBLISHABLE_KEY`, Deploy → shareable URL.
+
+## Phase status
+1–4 ✅ · 1.5 ✅ · Dual language (UI mostly) ✅ · 5 Studio ✅
